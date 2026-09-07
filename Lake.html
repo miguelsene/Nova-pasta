@@ -1,0 +1,446 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>CONTATO</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Nosifer&family=IM+Fell+English:ital@0;1&family=IM+Fell+English+SC&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --preto: #060505;
+    --preto-fundo: #0b0808;
+    --sangue: #7a0c0c;
+    --sangue-vivo: #b81616;
+    --sangue-escuro: #380404;
+    --cinza-cripta: #59504c;
+    --osso: #d8cfc2;
+    --osso-fraco: #8c827a;
+  }
+
+  *{ box-sizing:border-box; -webkit-tap-highlight-color:transparent; }
+
+  html,body{
+    margin:0; padding:0; width:100%; min-height:100%;
+    background:var(--preto);
+    color:var(--osso);
+    font-family:'IM Fell English', serif;
+    overflow-x:hidden;
+  }
+
+  body{
+    min-height:100vh;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    padding:6vh 5vw;
+    position:relative;
+  }
+
+  /* textura de ruído/grão */
+  .grao{
+    position:fixed; inset:0; z-index:1;
+    pointer-events:none;
+    opacity:.16;
+    mix-blend-mode:overlay;
+  }
+
+  /* vinheta pulsante */
+  .vinheta{
+    position:fixed; inset:0; z-index:2; pointer-events:none;
+    background:radial-gradient(ellipse at center, transparent 35%, rgba(0,0,0,.85) 100%);
+    animation:pulsar 5.5s ease-in-out infinite;
+  }
+  @keyframes pulsar{
+    0%,100%{ background:radial-gradient(ellipse at center, transparent 35%, rgba(0,0,0,.85) 100%); }
+    50%{ background:radial-gradient(ellipse at center, transparent 30%, rgba(20,0,0,.9) 100%); }
+  }
+
+  .risco{
+    position:fixed; inset:0; z-index:3; pointer-events:none; opacity:.05;
+    background:repeating-linear-gradient(0deg, rgba(255,255,255,.6) 0px, transparent 1px, transparent 3px);
+    animation:varrer 9s linear infinite;
+  }
+  @keyframes varrer{ 0%{transform:translateY(0);} 100%{transform:translateY(120px);} }
+
+  .altar{
+    position:relative; z-index:5;
+    width:100%; max-width:620px;
+    background:linear-gradient(180deg, rgba(15,10,10,.92), rgba(6,4,4,.96));
+    border:1px solid var(--sangue-escuro);
+    box-shadow:
+      0 0 0 1px rgba(122,12,12,.15),
+      0 0 60px rgba(122,12,12,.18),
+      inset 0 0 90px rgba(0,0,0,.7);
+    padding:9vw 8vw;
+    clip-path:polygon(0% 1.5%, 1% 0%, 99% 0.3%, 100% 2%, 99.4% 98%, 98% 100%, 2% 99.7%, 0% 97.5%);
+  }
+  @media(min-width:600px){ .altar{ padding:56px 64px; } }
+
+  .selo{
+    display:block; margin:0 auto 28px auto; width:76px; height:76px;
+    opacity:.85; filter:drop-shadow(0 0 8px rgba(122,12,12,.5));
+    animation:respirar 4.2s ease-in-out infinite;
+  }
+  @keyframes respirar{ 0%,100%{ opacity:.65; transform:scale(1);} 50%{ opacity:1; transform:scale(1.045);} }
+
+  .fase-rotulo{
+    text-align:center; font-size:12px; letter-spacing:.34em;
+    color:var(--osso-fraco); margin:0 0 6px 0;
+    font-family:'IM Fell English SC', serif;
+  }
+
+  h1{
+    font-family:'Nosifer', cursive;
+    font-weight:400;
+    text-align:center;
+    color:var(--sangue-vivo);
+    font-size:clamp(24px,6.4vw,38px);
+    line-height:1.3;
+    margin:0 0 22px 0;
+    text-shadow:0 0 18px rgba(184,22,22,.55), 0 0 2px rgba(184,22,22,.9);
+    letter-spacing:.01em;
+  }
+
+  .texto-ritual{
+    text-align:center;
+    color:var(--osso);
+    font-size:18px;
+    line-height:1.7;
+    margin:0 0 30px 0;
+    font-family:'IM Fell English', serif;
+  }
+  .texto-ritual em{
+    display:block; margin-top:10px;
+    color:var(--osso-fraco); font-style:italic; font-size:15px;
+  }
+
+  .referencia{
+    text-align:center;
+    font-size:19px;
+    letter-spacing:.04em;
+    color:var(--osso);
+    font-style:italic;
+    font-family:'IM Fell English', serif;
+    border-top:1px solid var(--sangue-escuro);
+    border-bottom:1px solid var(--sangue-escuro);
+    padding:18px 6px;
+    margin:0 0 30px 0;
+  }
+
+  .numero-selo{
+    text-align:center;
+    font-family:'Nosifer', cursive;
+    color:var(--sangue-vivo);
+    font-size:clamp(24px,6.5vw,36px);
+    letter-spacing:.08em;
+    margin:10px 0 30px 0;
+    line-height:1.6;
+    text-shadow:0 0 20px rgba(184,22,22,.6);
+  }
+
+  form{ display:flex; flex-direction:column; gap:14px; }
+
+  input[type="text"], input[type="number"]{
+    width:100%;
+    background:var(--preto-fundo);
+    border:1px solid var(--cinza-cripta);
+    color:var(--osso);
+    font-family:'IM Fell English', serif;
+    font-size:18px;
+    text-align:center;
+    letter-spacing:.04em;
+    padding:14px 12px;
+    outline:none;
+    transition:border-color .25s, box-shadow .25s;
+  }
+  input::placeholder{ color:var(--osso-fraco); opacity:.6; }
+  input:focus{
+    border-color:var(--sangue);
+    box-shadow:0 0 0 1px var(--sangue), 0 0 16px rgba(122,12,12,.4);
+  }
+  input.errado{ animation:tremer .32s; border-color:var(--sangue-vivo); }
+  @keyframes tremer{
+    0%,100%{ transform:translateX(0); }
+    20%{ transform:translateX(-7px); }
+    40%{ transform:translateX(6px); }
+    60%{ transform:translateX(-4px); }
+    80%{ transform:translateX(3px); }
+  }
+
+  .grade-numeros{
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    gap:10px;
+  }
+  .grade-numeros input{ padding:14px 4px; font-size:15px; }
+
+  .rotulo-campo{
+    font-size:13px; letter-spacing:.2em; color:var(--osso-fraco);
+    text-align:center; margin:2px 0 -4px 0; text-transform:lowercase;
+    font-family:'IM Fell English SC', serif;
+  }
+
+  button, .botao{
+    display:block; width:100%;
+    background:transparent;
+    border:1px solid var(--sangue);
+    color:var(--osso);
+    font-family:'IM Fell English SC', serif;
+    font-weight:400;
+    font-size:16px;
+    letter-spacing:.2em;
+    padding:15px 10px;
+    cursor:pointer;
+    margin-top:6px;
+    position:relative;
+    overflow:hidden;
+    transition:color .3s;
+    text-align:center;
+    text-decoration:none;
+    text-transform:lowercase;
+  }
+  button::before, .botao::before{
+    content:"";
+    position:absolute; inset:0;
+    background:var(--sangue);
+    transform:scaleX(0);
+    transform-origin:left;
+    transition:transform .35s ease;
+    z-index:-1;
+  }
+  button:hover::before, .botao:hover::before{ transform:scaleX(1); }
+  button:hover, .botao:hover{ color:#0b0808; }
+  button:active, .botao:active{ transform:translateY(1px); }
+
+  .link-externo{
+    display:block; text-align:center; margin:0 0 26px 0;
+  }
+
+  .mensagem-erro{
+    text-align:center; color:var(--sangue-vivo); font-size:14px;
+    font-family:'IM Fell English', serif; font-style:italic;
+    letter-spacing:.03em; min-height:18px; margin-top:-4px; margin-bottom:2px;
+    opacity:0; transition:opacity .2s;
+  }
+  .mensagem-erro.mostrar{ opacity:1; }
+
+  .fase{ display:none; }
+  .fase.ativa{ display:block; animation:surgir .6s ease; }
+  @keyframes surgir{ from{ opacity:0; transform:translateY(6px);} to{ opacity:1; transform:translateY(0);} }
+
+  .final-texto{
+    text-align:center;
+    font-size:19px;
+    line-height:1.85;
+    color:var(--osso);
+    font-style:italic;
+    font-family:'IM Fell English', serif;
+  }
+
+  footer.rodape{
+    text-align:center; margin-top:36px;
+    font-size:12px; letter-spacing:.25em;
+    color:var(--sangue-escuro);
+    font-family:'IM Fell English SC', serif;
+  }
+
+  @media (prefers-reduced-motion: reduce){
+    *{ animation:none !important; transition:none !important; }
+  }
+</style>
+</head>
+<body>
+
+<svg class="grao" width="0" height="0">
+  <filter id="ruido">
+    <feTurbulence type="fractalNoise" baseFrequency="0.9" numOctaves="2" stitchTiles="stitch"/>
+    <feColorMatrix type="saturate" values="0"/>
+  </filter>
+</svg>
+<div class="grao" style="filter:url(#ruido); background:#000;"></div>
+<div class="vinheta"></div>
+<div class="risco"></div>
+
+<main class="altar">
+
+  <svg class="selo" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+    <circle cx="50" cy="50" r="46" fill="none" stroke="#7a0c0c" stroke-width="1"/>
+    <circle cx="50" cy="50" r="34" fill="none" stroke="#7a0c0c" stroke-width="1"/>
+    <path d="M50 4 L88 74 L12 74 Z" fill="none" stroke="#b81616" stroke-width="1"/>
+    <path d="M50 96 L12 26 L88 26 Z" fill="none" stroke="#b81616" stroke-width="1"/>
+    <circle cx="50" cy="50" r="4" fill="#b81616"/>
+  </svg>
+
+  <!-- FASE 0 : ABERTURA -->
+  <section class="fase ativa" data-fase="0">
+    <h1>iniciar contato</h1>
+    <p class="texto-ritual">
+      algo do outro lado espera para ser chamado.<br>
+      uma vez aberta, a porta não fecha sozinha.
+      <em>prossiga somente se estiver preparado.</em>
+    </p>
+    <button type="button" onclick="avancar(1)">iniciar</button>
+  </section>
+
+  <!-- FASE 1 : REFERÊNCIA / HIEROFANIA -->
+  <section class="fase" data-fase="1">
+    <p class="fase-rotulo">fase i</p>
+    <h1>o livro</h1>
+    <p class="texto-ritual">busque a passagem. o nome do que se manifesta está escrito nela.</p>
+    <p class="referencia">Aleister Crowley — pg. 36 — livros</p>
+    <form onsubmit="return validar(event,1)">
+      <input type="text" id="resposta1" placeholder="a palavra revelada" autocomplete="off">
+      <p class="mensagem-erro" id="erro1">a página permanece fechada. tente de novo.</p>
+      <button type="submit">selar resposta</button>
+    </form>
+  </section>
+
+  <!-- FASE 2 : PDF BINÁRIO -->
+  <section class="fase" data-fase="2">
+    <p class="fase-rotulo">fase ii</p>
+    <h1>o documento</h1>
+    <p class="texto-ritual">
+      o que resta foi cifrado em silêncios e traços.<br>
+      baixe o documento. decifre o que ele esconde.
+    </p>
+    <a class="botao link-externo" href="https://drive.google.com/file/d/1tm7Bv6Y440_TUGtsSknyt2SuVCB_mvXD/view?usp=drivesdk" target="_blank" rel="noopener noreferrer">abrir documento ii</a>
+    <form onsubmit="return validar(event,2)">
+      <input type="text" id="resposta2" placeholder="o número oculto" autocomplete="off" inputmode="numeric">
+      <p class="mensagem-erro" id="erro2">o número não confere. o silêncio insiste.</p>
+      <button type="submit">selar resposta</button>
+    </form>
+  </section>
+
+  <!-- FASE 3 : LINK DRIVE -->
+  <section class="fase" data-fase="3">
+    <p class="fase-rotulo">fase iii</p>
+    <h1>o registro</h1>
+    <p class="texto-ritual">
+      há um registro do que aconteceu da última vez.<br>
+      assista até o fim. depois, diga o que viu.
+    </p>
+    <a class="botao link-externo" href="https://drive.google.com/file/d/10kX2FxYSgbDskvRLlP_Cd3-VuXf0KHsh/view?usp=drivesdk" target="_blank" rel="noopener noreferrer">abrir registro</a>
+    <form onsubmit="return validar(event,3)">
+      <input type="text" id="resposta3" placeholder="o que você presenciou" autocomplete="off">
+      <p class="mensagem-erro" id="erro3">isso não é o que restou. olhe de novo.</p>
+      <button type="submit">selar resposta</button>
+    </form>
+  </section>
+
+  <!-- FASE 4 : 6-12-18 -->
+  <section class="fase" data-fase="4">
+    <p class="fase-rotulo">fase iv</p>
+    <h1>o intervalo</h1>
+    <p class="numero-selo">6 — 12 — 18</p>
+    <button type="button" onclick="avancar(5)">próximo</button>
+  </section>
+
+  <!-- FASE 5 : DRIVE FOLDER + NUMINOSIDADE + NÚMEROS -->
+  <section class="fase" data-fase="5">
+    <p class="fase-rotulo">fase v</p>
+    <h1>o último véu</h1>
+    <p class="texto-ritual">
+      tudo o que veio antes está guardado aqui.<br>
+      encontre a palavra e a sequência que faltam.
+    </p>
+    <a class="botao link-externo" href="https://drive.google.com/drive/folders/1NrrfqI8kZsjH2TvnqKGRQIuYKj6FlNyg" target="_blank" rel="noopener noreferrer">abrir arquivo</a>
+    <form onsubmit="return validar(event,5)">
+      <p class="rotulo-campo">a palavra</p>
+      <input type="text" id="resposta5palavra" placeholder="a palavra que falta" autocomplete="off">
+      <p class="rotulo-campo">a sequência, em ordem</p>
+      <div class="grade-numeros">
+        <input type="number" id="n5_1" placeholder="—" inputmode="numeric">
+        <input type="number" id="n5_2" placeholder="—" inputmode="numeric">
+        <input type="number" id="n5_3" placeholder="—" inputmode="numeric">
+        <input type="number" id="n5_4" placeholder="—" inputmode="numeric">
+      </div>
+      <p class="mensagem-erro" id="erro5">algo está fora de lugar.</p>
+      <button type="submit">completar o ritual</button>
+    </form>
+  </section>
+
+  <!-- FASE FINAL -->
+  <section class="fase" data-fase="6">
+    <p class="fase-rotulo">fim</p>
+    <h1>está feito</h1>
+    <p class="final-texto">
+      em um lugar escuro não vejo nada à minha frente,<br>
+      apenas sinto o frio e a bagunça.
+    </p>
+  </section>
+
+  <footer class="rodape">não desfaça o que foi selado</footer>
+</main>
+
+<script>
+  function normalizar(str){
+    return str
+      .toString()
+      .normalize("NFD").replace(/[\u0300-\u036f]/g, "")
+      .toLowerCase()
+      .replace(/[.,!?"';:]/g, "")
+      .replace(/\s+/g, " ")
+      .trim();
+  }
+
+  const RESPOSTAS = {
+    1: ["hierofania"],
+    2: ["418"],
+    3: ["eu acabei o ritual ele ta", "eu acabei o ritual ele esta", "eu acabei o ritual, ele ta"].map(normalizar)
+  };
+
+  function avancar(numeroFase){
+    document.querySelectorAll(".fase").forEach(el => el.classList.remove("ativa"));
+    const alvo = document.querySelector(`.fase[data-fase="${numeroFase}"]`);
+    if(alvo) alvo.classList.add("ativa");
+    window.scrollTo({top:0, behavior:"smooth"});
+  }
+
+  function mostrarErro(idErro, idInput){
+    const erro = document.getElementById(idErro);
+    const input = document.getElementById(idInput);
+    erro.classList.add("mostrar");
+    input.classList.remove("errado");
+    void input.offsetWidth;
+    input.classList.add("errado");
+  }
+
+  function validar(evento, fase){
+    evento.preventDefault();
+
+    if(fase === 1){
+      const valor = normalizar(document.getElementById("resposta1").value);
+      if(RESPOSTAS[1].includes(valor)){ avancar(2); }
+      else { mostrarErro("erro1","resposta1"); }
+    }
+
+    else if(fase === 2){
+      const valor = document.getElementById("resposta2").value.trim();
+      if(valor === "418"){ avancar(3); }
+      else { mostrarErro("erro2","resposta2"); }
+    }
+
+    else if(fase === 3){
+      const valor = normalizar(document.getElementById("resposta3").value);
+      if(RESPOSTAS[3].includes(valor)){ avancar(4); }
+      else { mostrarErro("erro3","resposta3"); }
+    }
+
+    else if(fase === 5){
+      const palavra = normalizar(document.getElementById("resposta5palavra").value);
+      const n1 = document.getElementById("n5_1").value.trim();
+      const n2 = document.getElementById("n5_2").value.trim();
+      const n3 = document.getElementById("n5_3").value.trim();
+      const n4 = document.getElementById("n5_4").value.trim();
+      const sequenciaCorreta = (n1 === "418" && n2 === "777" && n3 === "26" && n4 === "10");
+      if(palavra === "numinosidade" && sequenciaCorreta){ avancar(6); }
+      else { mostrarErro("erro5","resposta5palavra"); }
+    }
+
+    return false;
+  }
+</script>
+
+</body>
+</html>
